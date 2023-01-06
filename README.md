@@ -4,7 +4,7 @@ Figma-icons-tokens aims to import figma icons given a design tokens configuratio
 
 To use the library we must follow the following steps:
 
-1. Run the command ```npm install @jsamper92/figma-icons-tokens```
+1. Run the command ```npm install figma-icons-tokens```
 2. Create a script in the package.json where we will pass the configuration file ```figma-icons-tokens --file=tokens.json --theme=global --key=icon --path=assets```
 
 Options flags command line:
