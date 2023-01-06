@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 const { getNode, getSvgImageUrl, getIconContent } = require("./utils/api");
-const { error, chunk, timer, alert } = require("./utils/utils");
+const { error, chunk, timer } = require("./utils/utils");
 const [fs, route, argv] = [
     require("fs"),
     require("path"),
@@ -43,8 +43,6 @@ const awaitUrlIcons = () => {
 /**
  * this function returns the svg content of each icon and will create it as a file
  * @param {Array<{name: string;node: string}>} icons - Array chunk icons specefied
- * @param {number} index - Index chunk
- * @param {Array<{name: string;node: string}[]>} chunks - Chunks
  */
 const getIconSvg = async (icons) => {
     for await (item of icons) {

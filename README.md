@@ -21,6 +21,14 @@ Initially, the link to be copied must be the node above the vector that defines 
 
 ![Icon Figma link](./docs/figma-icons-tokens.gif)
 
+Define an environment variables file with the authorization token and figma file id:
+```
+
+FIGMA_TOKEN=figX_XXXXXXXXXXXXXXXXXXX-XXX
+FILE_KEY=XXXXXXXXXXXXXXXX
+
+```
+
 For the correct operation of the library, it is necessary to create a configuration with the following structure:
 
 ```

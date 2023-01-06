@@ -18,32 +18,17 @@ const instanceImages = api.create({
     baseURL: `https://api.figma.com/v1/images/${process.env.FILE_KEY}`,
     headers,
 });
-/**
- * get Figma document info
- *
- * @return {Promise<Object>}
- */
-const getDocument = async () => instanceFiles.get('/');
+
 /**
  * get Figma node info
  *
  * @param {string} nodeId
- * @return {Promise<Object>}
+ * @return {Promise<string>}
  */
 const getNode = async (nodeId) => {
     const { data: { nodes } } = await instanceFiles.get(`/nodes?ids=${decodeURIComponent(nodeId)}`);
     return Object.keys(nodes)[0];
 }
-/**
- * get Figma node children
- *
- * @param {string} nodeId
- * @return {Promise<[Object]>}
- */
-const getNodeChildren = async (nodeId) => {
-    const { data: { nodes } } = await instanceFiles.get(`/nodes?ids=${decodeURIComponent(nodeId)}`);
-    return nodes[nodeId].document.children;
-};
 /**
  * get svg image resource url
  *
@@ -54,12 +39,16 @@ const getSvgImageUrl = async (nodeId) => {
     const { data: { images } } = await instanceImages.get(`/?ids=${decodeURIComponent(nodeId)}&format=svg`);
     return images[nodeId];
 };
+/**
+ * get svg image resource url
+ *
+ * @param {string} url
+ * @return {Promise<string>}
+ */
 const getIconContent = async (url) => api.get(url);
 
 module.exports = {
-    getDocument,
     getNode,
-    getNodeChildren,
     getSvgImageUrl,
     getIconContent,
 };
