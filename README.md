@@ -29,7 +29,7 @@ FILE_KEY=XXXXXXXXXXXXXXXX
 
 ```
 
-For the correct operation of the library, it is necessary to create a configuration with the following structure:
+For the correct operation of the library, It is necessary to present a configuration file with the structure defined in the Figma Studio Tokens standard and the link obtained from the icons to import:
 
 ```
 {
