@@ -36,19 +36,19 @@ For the correct operation of the library, it is necessary to create a configurat
   "global": {
     "icon":{
       "delete": {
-        "value": "https://www.figma.com/file/P39ZzbENxy5c2cc0cLqnwZ/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
+        "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
         "type": "asset"
       },
       "add": {
-        "value": "https://www.figma.com/file/P39ZzbENxy5c2cc0cLqnwZ/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
+        "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
         "type": "asset"
       },
       "next": {
-        "value": "https://www.figma.com/file/P39ZzbENxy5c2cc0cLqnwZ/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
+        "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
         "type": "asset"
       },
       "previous": {
-        "value": "https://www.figma.com/file/P39ZzbENxy5c2cc0cLqnwZ/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
+        "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
         "type": "asset"
       }
     }
