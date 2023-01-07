@@ -7,8 +7,7 @@
     "figma-icons-tokens": "index.js"
   },
   "scripts": {
-    "build": "node index.js --file=tokens.json --theme=global --key=icon --path=assets",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node index.js --file=tokens.json --theme=global --key=icon --path=assets"
   },
   "keywords": [
     "Figma",

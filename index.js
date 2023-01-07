@@ -15,6 +15,21 @@ const data = JSON.parse(fs.readFileSync(route.resolve(process.cwd(), file)));
 const icons = data[theme][key] || {};
 
 /**
+ * @description This function gets the node and inserts it into the icon array
+ * @param {string} item 
+ * @param {string} name 
+ * @param {Array<{name: string;node: string}>} _promises 
+ */
+const getValueToken = (item, name, _promises) => {
+    const { value } = item;
+    const nodeId = new RegExp(/\bnode-id\b.*\b=\b/)
+        .exec(value)[0]
+        .replace("node-id=", "")
+        .slice(0, -1);
+
+    if (!fs.existsSync(route.resolve(path, `${name}.svg`))) _promises.push({ name, nodeId });
+}
+/**
  * @description This function returns an array with the name and node of each figma icon
  * @returns {Array<{name: string;node: string}>}
  */
@@ -23,13 +38,13 @@ const awaitUrlIcons = () => {
         let _promises = [];
 
         Object.entries(icons).forEach(async ([name, item], index) => {
-            const { value } = item;
-            const nodeId = new RegExp(/\bnode-id\b.*\b=\b/)
-                .exec(value)[0]
-                .replace("node-id=", "")
-                .slice(0, -1);
-
-            if (!fs.existsSync(route.resolve(path, `${name}.svg`))) _promises.push({ name, nodeId });
+            if (Object.keys(item).every(key => key !== 'value')) {
+                Object.entries(item).forEach(async ([nameChild, child], index) => {
+                    getValueToken(child, `${name}_${nameChild}`, _promises);
+                })
+            } else {
+                getValueToken(item, name, _promises);
+            }
             if (index === Object.keys(icons).length - 1) {
                 if (_promises.length === 0) {
                     error('There are no new icons to import');
@@ -45,13 +60,15 @@ const awaitUrlIcons = () => {
  * @param {Array<{name: string;node: string}>} icons - Array chunk icons specefied
  */
 const getIconSvg = async (icons) => {
+    let isError = false;
     for await (item of icons) {
         const { name, nodeId } = item;
+        if(isError) break;
         await getNode(nodeId)
             .then(async (response) => {
                 await getSvgImageUrl(response)
-                    .then((urlContent) => {
-                        getIconContent(urlContent)
+                    .then(async (urlContent) => {
+                        await getIconContent(urlContent)
                             .then((response) => {
                                 const { data } = response;
                                 fs.writeFile(route.resolve(path, `${name}.svg`), data, () =>
@@ -70,7 +87,13 @@ const getIconSvg = async (icons) => {
             })
             .catch((err) => {
                 const { data: { status } } = err.response;
-                if (status === 403) error('Check figma authorization token');
+
+                if (status === 403) {
+                    error('Check figma authorization token');
+                    isError = true;
+                } else {
+                    error(err.response.data);
+                }
             })
     }
 };
@@ -97,7 +120,11 @@ const getIcons = async () => {
 
 if (isIcons) {
     if (Object.values(icons).length) {
-        getIcons();
+        if (process.env.FIGMA_TOKEN && process.env.FILE_KEY) {
+            getIcons();
+        } else {
+            error('Check environment variables');
+        }
     } else {
         error(`Check the script flags`);
     }
