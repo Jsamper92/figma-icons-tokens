@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 require("dotenv").config();
 
-const { getNode, getSvgImageUrl, getIconContent } = require("./utils/api");
-const { error } = require("./utils/utils");
-const [fs, route, argv] = [
+const [fs, route, api, utils, argv] = [
     require("fs"),
     require("path"),
+    require("./utils/api"),
+    require("./utils/utils"),
     require("minimist")(process.argv.slice(2)),
 ];
 
+const { getNode, getSvgImageUrl, getIconContent } = api;
+const { error } = utils;
 const { file, key, theme, path } = argv;
 const isIcons = fs.existsSync(route.resolve(process.cwd(), file));
 const data = JSON.parse(fs.readFileSync(route.resolve(process.cwd(), file)));
@@ -29,6 +31,23 @@ const getValueToken = (item, name, _promises) => {
 
     if (!fs.existsSync(route.resolve(path, `${name}.svg`))) _promises.push({ name, nodeId });
 };
+
+/**
+ * @description Function whose objective is to group the tree of icons defined in the configuration file 
+ * @param {{[key: string]: {[key: string]: {name: string;node: string}} | {name: string;node: string}}} icons - Icons 
+ * @param {*} names - Names of icons
+ * @param {*} nodes - Array of icons
+ */
+const handleChildIcons = (icons, names, nodes) => {
+    Object.entries(icons).forEach(([nameChild, child]) => {
+        if (Object.keys(child).every((key) => key !== "value")) {
+            handleChildIcons(child, [names, nameChild], nodes);
+        } else {
+            const name = [names, nameChild].flat(Infinity).join('_');
+            getValueToken(child, name, nodes);
+        }
+    });
+}
 /**
  * @description This function returns an array with the name and node of each figma icon
  * @returns {Array<{name: string;node: string}>}
@@ -37,9 +56,7 @@ const getNodeIcons = () => {
     let nodes = [];
     Object.entries(icons).forEach(([name, item]) => {
         if (Object.keys(item).every((key) => key !== "value")) {
-            Object.entries(item).forEach(([nameChild, child]) => {
-                getValueToken(child, `${name}_${nameChild}`, nodes);
-            });
+            handleChildIcons(item, [name], nodes);
         } else {
             getValueToken(item, name, nodes);
         }
@@ -53,7 +70,6 @@ const getNodeIcons = () => {
  */
 const getIcons = async () => {
     const nodes = getNodeIcons();
-
     if (!fs.existsSync(route.resolve(process.cwd(), path))) fs.mkdirSync(route.resolve(process.cwd(), path), { recursive: true });
     if (nodes.length) {
         await Promise.all(nodes.map(async ({ name, nodeId }) => ({ name, node: await getNode(nodeId) })))
@@ -66,24 +82,16 @@ const getIcons = async () => {
                 );
                 for await ([index, icon] of allSvgContent.entries()) {
                     const { name, data } = icon;
-                    fs.writeFile(route.resolve(path, `${name}.svg`), data, () =>
-                        console.log(
-                            `✅ The icon ${name}.svg has been successfully created in the path ${path}/${name}.svg`
-                        )
-                    );
+                    const message = () => console.log(`✅ The icon ${name}.svg has been successfully created in the path ${path}/${name}.svg`);
+                    fs.writeFile(route.resolve(path, `${name}.svg`), data, message);
                 }
             })
             .catch((err) => {
-                const {
-                    data: { status },
-                } = err.response;
+                const { data: { status } } = err.response;
 
-                if (status === 403) {
-                    error("Check figma authorization token");
-                    isError = true;
-                } else {
-                    error(err.response.data);
-                }
+                status === 403
+                    ? error("Check figma authorization token")
+                    : error(err.response.data)
             });
     } else {
         error("There are no new icons to import");
