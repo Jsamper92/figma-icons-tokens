@@ -17,16 +17,12 @@
   ],
   "author": "Javier Samper Arias",
   "license": "MIT",
-  "files": [
-    "index.js",
-    "REAMDE.md",
-    "utils",
-    "LICENSE"
-  ],
   "dependencies": {
     "axios": "1.2.2",
     "colors": "1.4.0",
     "dotenv": "16.0.3",
+    "figma-icons-tokens-test": "^1.0.0",
+    "fs-extra": "^11.1.0",
     "minimist": "1.2.7"
   },
   "directories": {

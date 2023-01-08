@@ -16,8 +16,9 @@ Options flags command line:
 | key   | Key where the icons to import are located.          |
 | path  | Path where the imported icons should be exposed.    |
 
-
 Initially, the link to be copied must be the node above the vector that defines the icon. To guarantee the correct display of the icon, it must be a single vector.
+
+![Icon Figma link](./docs/figma-icons-tokens.gif)
 
 Define an environment variables file with the authorization token and figma file id:
 
