@@ -1,5 +1,5 @@
 {
-  "name": "figma-icons-tokens-test",
+  "name": "figma-icons-tokens",
   "version": "1.0.0",
   "description": "Figma-icons-tokens aims to import figma icons given a design tokens configuration file exposed by Tokens Studio Figma.",
   "main": "index.js",
@@ -7,8 +7,7 @@
     "figma-icons-tokens": "index.js"
   },
   "scripts": {
-    "build": "node index.js --file=tokens.json --theme=global --key=icon --path=assets",
-    "publish": ""
+    "build": "node index.js --file=tokens.json --theme=global --key=icon --path=assets"
   },
   "keywords": [
     "Figma",
