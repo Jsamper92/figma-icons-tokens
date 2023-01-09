@@ -1,6 +1,6 @@
 {
   "name": "figma-icons-tokens",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Figma-icons-tokens aims to import figma icons given a design tokens configuration file exposed by Tokens Studio Figma.",
   "main": "index.js",
   "bin": {
