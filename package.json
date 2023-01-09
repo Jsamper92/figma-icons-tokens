@@ -10,8 +10,12 @@
     "build": "node index.js --file=tokens.json --theme=global --key=icon --path=assets"
   },
   "keywords": [
+    "cli",
     "Figma",
+    "design",
+    "tokens",
     "Design Tokens",
+    "Design System",
     "Tokens Studio Figma"
   ],
   "author": "Javier Samper Arias",

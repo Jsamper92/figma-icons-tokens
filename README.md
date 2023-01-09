@@ -82,6 +82,7 @@ If you are contributing code with new features or bug-fixes:
 - Follow the development guide below to get figma-icons-tokens to work.
 - Open a pull request on [Github](https://github.com/Jsamper92/figma-icons-tokens/issues)
 
-## Development
 
-To install the necessary Node dependencies, run `npm install`.
+## License
+
+[MIT License](LICENSE) © [Javier Samper Arias](https://github.com/Jsamper92)
