@@ -1,7 +1,10 @@
 .DS_Store
 node_modules/
 dist/
+assets/
 
 .npmrc 
 .idea
 .env
+
+tokens.json

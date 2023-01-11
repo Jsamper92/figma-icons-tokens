@@ -80,18 +80,16 @@ const getIcons = async () => {
                     return { name, data };
                 })
                 );
-                for await ([index, icon] of allSvgContent.entries()) {
+                for await (icon of allSvgContent) {
                     const { name, data } = icon;
                     const message = () => console.log(`✅ The icon ${name}.svg has been successfully created in the path ${path}/${name}.svg`);
                     fs.writeFile(route.resolve(path, `${name}.svg`), data, message);
                 }
             })
             .catch((err) => {
-                const { data: { status } } = err.response;
-
-                status === 403
+                err.response.data.status === 403
                     ? error("Check figma authorization token")
-                    : error(err.response.data)
+                    : error(err)
             });
     } else {
         error("There are no new icons to import");

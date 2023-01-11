@@ -86,3 +86,7 @@ If you are contributing code with new features or bug-fixes:
 ## Development
 
 To install the necessary Node dependencies, run `npm install`.
+
+## License
+
+[MIT License](LICENSE) © [Javier Samper Arias](https://github.com/Jsamper92)
