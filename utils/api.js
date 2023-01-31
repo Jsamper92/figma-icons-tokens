@@ -1,3 +1,10 @@
+/**
+ * @author Javier Samper Arias
+ * @copyright 2023 Javier Samper Arias. All rights reserved.
+ * See LICENSE file in root directory for full license.
+ */
+"use strict"
+
 const api = require('axios');
 const headers = {
     'X-FIGMA-TOKEN': process.env.FIGMA_TOKEN,

@@ -2,10 +2,17 @@
 
 Figma-icons-tokens aims to import figma icons given a design tokens configuration file exposed by [Tokens Studio Figma](https://tokens.studio/).
 
-To use the library we must follow the following steps:
+## Installation
 
-1. Run the command `npm install figma-icons-tokens`
-2. Create a script in the package.json where we will pass the configuration file `figma-icons-tokens --file=tokens.json --theme=global --key=icon --path=assets`
+```
+npm install figma-icons-tokens
+```
+
+## Example
+
+``` 
+figma-icons-tokens --file=tokens.json --theme=global --key=icon --path=assets
+```
 
 Options flags command line:
 
@@ -15,6 +22,7 @@ Options flags command line:
 | theme | Theme name where the icons to import are specified. |
 | key   | Key where the icons to import are located.          |
 | path  | Path where the imported icons should be exposed.    |
+
 
 Initially, the link to be copied must be the node above the vector that defines the icon. To guarantee the correct display of the icon, it must be a single vector.
 
@@ -71,6 +79,40 @@ For the correct operation of the library, It is necessary to present a configura
     }
 }
 ```
+
+## Node.js API
+
+You can use this module as a node module.
+
+```
+const figma = require('figma-icons-tokens');
+```
+
+### figmaIconsTokens ({theme: string, path: string, file: string, key: string}) : Promise<{path: string; name: string}[]>
+```
+const [figma, argv] = [
+  require('figma-icons-tokens')
+  require('minimist')(process.argv.slice(2)),
+];
+
+const { tokens, theme, path } = argv;
+const { figmaIconsTokens } = figma;
+
+figmaIconsTokens({ theme, path, file: tokens, key: 'icons' })
+  .then((ev) => console.log(ev))
+  .catch((error) => console.error(error))
+```
+
+| Args | Type | Description                                         |
+| ----- | ----  | --------------------------------------------------- |
+| file  | String | File Configuration                                  |
+| theme | String | Theme name where the icons to import are specified. |
+| key   | String | Key where the icons to import are located.          |
+| path  | String | Path where the imported icons should be exposed.    |
+
+## Changelog
+
+[Github Releases](https://github.com/Jsamper92/figma-icons-tokens/tags)
 
 ## Contributing
 

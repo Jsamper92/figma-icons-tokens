@@ -1,10 +1,10 @@
 {
   "name": "figma-icons-tokens",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Figma-icons-tokens aims to import figma icons given a design tokens configuration file exposed by Tokens Studio Figma.",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "bin": {
-    "figma-icons-tokens": "index.js"
+    "figma-icons-tokens": "./bin/index.js"
   },
   "scripts": {
     "build": "node index.js --file=tokens.json --theme=global --key=icon --path=assets"
@@ -21,10 +21,11 @@
   "author": "Javier Samper Arias",
   "license": "MIT",
   "files": [
-    "index.js",
-    "REAMDE.md",
+    "bin",
+    "lib",
     "utils",
-    "LICENSE"
+    "LICENSE",
+    "REAMDE.md"
   ],
   "dependencies": {
     "axios": "1.2.2",
