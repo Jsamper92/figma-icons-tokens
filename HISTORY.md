@@ -1,6 +1,11 @@
 1.1.0 / 2022-01-31
 ===================
 
+  * Fix error to build icons. In some case the defined path could be managed as indeterminate
+
+1.1.0 / 2022-01-31
+===================
+
   * Added Javascript API to handle icons import
 
 1.0.4 / 2022-01-09

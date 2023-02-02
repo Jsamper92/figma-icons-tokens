@@ -30,6 +30,7 @@ const error = (message) => console.log(red(message));
  */
 const getValueToken = (path, item, name, _promises) => {
     const { value } = item;
+    
     const nodeId = new RegExp(/\bnode-id\b.*\b=\b/)
         .exec(value)[0]
         .replace("node-id=", "")
@@ -44,7 +45,7 @@ const getValueToken = (path, item, name, _promises) => {
  * @param {*} names - Names of icons
  * @param {*} nodes - Array of icons
  */
-const handleChildIcons = (icons, names, nodes) => {
+const handleChildIcons = (path, icons, names, nodes) => {
     Object.entries(icons).forEach(([nameChild, child]) => {
         if (Object.keys(child).every((key) => key !== "value")) {
             handleChildIcons(child, [names, nameChild], nodes);
@@ -63,7 +64,7 @@ const getNodeIcons = (path, icons) => {
     let nodes = [];
     Object.entries(icons).forEach(([name, item]) => {
         if (Object.keys(item).every((key) => key !== "value")) {
-            handleChildIcons(item, [name], nodes);
+            handleChildIcons(path, item, [name], nodes);
         } else {
             getValueToken(path, item, name, nodes);
         }
