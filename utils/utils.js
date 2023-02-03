@@ -5,14 +5,15 @@
  */
 "use strict"
 
-let { red } = require('colors');
-const [fs, route, api, argv] = [
+const [fs, route, api, colors, argv] = [
     require('fs'),
     require("path"),
     require("./api"),
+    require('colors'),
     require("minimist")(process.argv.slice(2))
 ];
 
+const { red } = colors;
 const { getNode, getSvgImageUrl, getIconContent } = api;
 
 /**
@@ -30,13 +31,11 @@ const error = (message) => console.log(red(message));
  */
 const getValueToken = (path, item, name, _promises) => {
     const { value } = item;
-    
-    const nodeId = new RegExp(/\bnode-id\b.*\b=\b/)
-        .exec(value)[0]
-        .replace("node-id=", "")
-        .slice(0, -1);
 
-    if (!fs.existsSync(route.resolve(path, `${name}.svg`))) _promises.push({ name, nodeId });
+    const fileId = new RegExp(/(file\/)(.*)(\/)/).exec(value)[2];
+    const nodeId = new RegExp(/(node-id=)(.*)(\=)/).exec(value)[2]
+
+    if (!fs.existsSync(route.resolve(path, `${name}.svg`))) _promises.push({ name, nodeId, fileId });
 };
 
 /**
@@ -86,11 +85,12 @@ const config = (args) => args || argv
 const getIcons = async (path, icons) => {
     const nodes = getNodeIcons(path, icons);
     if (!fs.existsSync(route.resolve(process.cwd(), path))) fs.mkdirSync(route.resolve(process.cwd(), path), { recursive: true });
+
     if (nodes.length) {
         return new Promise(async (resolve) => {
-            await Promise.all(nodes.map(async ({ name, nodeId }) => ({ name, node: await getNode(nodeId) })))
+            await Promise.all(nodes.map(async ({ name, nodeId, fileId }) => ({ name, fileId, node: await getNode(nodeId, fileId) })))
                 .then(async (response) => {
-                    const allSvgUrl = await Promise.all(response.map(async ({ name, node }) => ({ name, url: await getSvgImageUrl(node) })));
+                    const allSvgUrl = await Promise.all(response.map(async ({ name, fileId, node }) => ({ name, url: await getSvgImageUrl(node, fileId) })));
                     const allSvgContent = await Promise.all(allSvgUrl.map(async ({ name, url }) => {
                         const { data } = await getIconContent(url);
                         return { name, data };
@@ -114,7 +114,7 @@ const getIcons = async (path, icons) => {
                     })
                 })
                 .catch((err) => {
-                    err.response.data.status === 403
+                    err.response?.data?.status === 403
                         ? error("Check figma authorization token")
                         : error(err)
                 });

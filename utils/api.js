@@ -5,26 +5,47 @@
  */
 "use strict"
 
-const api = require('axios');
+const _importDynamic = new Function("modulePath", "return import(modulePath)");
+async function fetch(...args) {
+    const { default: fetch } = await _importDynamic("node-fetch");
+    return fetch(...args);
+}
+/**
+ * Header http generic
+ */
 const headers = {
     'X-FIGMA-TOKEN': process.env.FIGMA_TOKEN,
 };
 /**
- * api endpoint for files
- *
+ * Request http generic
  */
-const instanceFiles = api.create({
-    baseURL: `https://api.figma.com/v1/files/${process.env.FILE_KEY}`,
-    headers,
-});
+const request = {
+    method: 'GET',
+    headers
+};
+
 /**
- * api endpoint for images
+ * api proxy for files
  *
  */
-const instanceImages = api.create({
-    baseURL: `https://api.figma.com/v1/images/${process.env.FILE_KEY}`,
-    headers,
-});
+const _instanceFiles = `https://api.figma.com/v1/files/`;
+
+/**
+ * api proxy for images
+ *
+ */
+const _instanceImages = `https://api.figma.com/v1/images/`;
+
+/**
+ * Function to fetch url
+ * @param {string} url 
+ * @returns {Response}
+ */
+const requestHttp = async (url) => {
+    const response = await fetch(url, request);
+    const data = await response.json()
+    return data;
+}
 
 /**
  * get Figma node info
@@ -32,8 +53,10 @@ const instanceImages = api.create({
  * @param {string} nodeId
  * @return {Promise<string>}
  */
-const getNode = async (nodeId) => {
-    const { data: { nodes } } = await instanceFiles.get(`/nodes?ids=${decodeURIComponent(nodeId)}`);
+const getNode = async (nodeId, fileId) => {
+    const url = `${_instanceFiles}${fileId}/nodes?ids=${decodeURIComponent(nodeId)}`;
+    const { nodes } = await requestHttp(url);
+
     return Object.keys(nodes)[0];
 }
 /**
@@ -42,8 +65,10 @@ const getNode = async (nodeId) => {
  * @param {string} nodeId
  * @return {Promise<string>}
  */
-const getSvgImageUrl = async (nodeId) => {
-    const { data: { images } } = await instanceImages.get(`/?ids=${decodeURIComponent(nodeId)}&format=svg`);
+const getSvgImageUrl = async (nodeId, fileId) => {
+    const url = `${_instanceImages}${fileId}/?ids=${decodeURIComponent(nodeId)}&format=svg`;
+    const { images } = await requestHttp(url);
+
     return images[nodeId];
 };
 /**
@@ -52,7 +77,12 @@ const getSvgImageUrl = async (nodeId) => {
  * @param {string} url
  * @return {Promise<string>}
  */
-const getIconContent = async (url) => api.get(url);
+const getIconContent = async (url) => {
+    const response = await fetch(url, request);
+    const data = await response.text();
+
+    return { data };
+}
 
 module.exports = {
     getNode,

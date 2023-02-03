@@ -33,7 +33,6 @@ Define an environment variables file with the authorization token and figma file
 ```
 
 FIGMA_TOKEN=figX_XXXXXXXXXXXXXXXXXXX-XXX
-FILE_KEY=XXXXXXXXXXXXXXXX
 
 ```
 

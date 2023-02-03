@@ -1,30 +1,28 @@
-1.1.0 / 2022-01-31
-===================
+# 1.2.0 / 2022-02-04
 
-  * Fix error to build icons. In some case the defined path could be managed as indeterminate
+- Replace package axios to node-fetch to reduce package size
+- Now it is no longer necessary to define the file id in the environment variables, it is obtained directly from the token URL that is defined in the configuration file. In this way, it is now possible to import icons from different iframes.
 
-1.1.0 / 2022-01-31
-===================
+# 1.1.1 / 2022-01-31
 
-  * Added Javascript API to handle icons import
+- Fix error to build icons. In some case the defined path could be managed as indeterminate
 
-1.0.4 / 2022-01-09
-===================
+# 1.1.0 / 2022-01-31
 
-  * Fixed handle error http to get icons
+- Added Javascript API to handle icons import
 
-1.0.3 / 2022-01-09
-===================
+# 1.0.4 / 2022-01-09
 
-  * Update documentation
+- Fixed handle error http to get icons
 
-1.0.2 / 2022-01-09
-===================
+# 1.0.3 / 2022-01-09
 
-  * Added functionality where it allows dynamic nesting of icons based on the configuration file
-  
+- Update documentation
 
-1.0.1 / 2022-01-08
-===================
+# 1.0.2 / 2022-01-09
 
-  * Create cli figma-icons-tokens to import figma icons
+- Added functionality where it allows dynamic nesting of icons based on the configuration file
+
+# 1.0.1 / 2022-01-08
+
+- Create cli figma-icons-tokens to import figma icons
