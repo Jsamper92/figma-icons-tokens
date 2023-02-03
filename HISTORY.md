@@ -1,3 +1,7 @@
+# 1.2.1 / 2022-02-04
+
+- Added the data property in the javascript API response that returns the content of the svg.
+
 # 1.2.0 / 2022-02-04
 
 - Replace package axios to node-fetch to reduce package size

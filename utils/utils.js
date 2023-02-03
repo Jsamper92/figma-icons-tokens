@@ -106,7 +106,7 @@ const getIcons = async (path, icons) => {
                     }))
                     await Promise.all(allFilesContent.map(async ({ path, name, data, message }) => {
                         fs.writeFile(route.resolve(path, name), data, message);
-                        return { path, name }
+                        return { path, name, data }
                     })).then((files) => {
                         resolve(files);
                     }).catch((err) => {

@@ -87,7 +87,7 @@ You can use this module as a node module.
 const figma = require('figma-icons-tokens');
 ```
 
-### figmaIconsTokens ({theme: string, path: string, file: string, key: string}) : Promise<{path: string; name: string}[]>
+### figmaIconsTokens ({theme: string, path: string, file: string, key: string}) : Promise<{path: string; name: string; data: string}[]>
 ```
 const [figma, argv] = [
   require('figma-icons-tokens')
