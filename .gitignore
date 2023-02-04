@@ -3,6 +3,7 @@ node_modules/
 dist/
 assets/
 
+coverage
 .npmrc 
 .idea
 .env
