@@ -129,6 +129,7 @@ module.exports = {
     error,
     config,
     getIcons,
-    getValueToken,
     getNodeIcons,
+    getValueToken,
+    handleChildIcons,
 };

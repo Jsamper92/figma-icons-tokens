@@ -86,6 +86,7 @@ const getIconContent = async (url) => {
 
 module.exports = {
     getNode,
+    requestHttp,
     getSvgImageUrl,
     getIconContent,
 };

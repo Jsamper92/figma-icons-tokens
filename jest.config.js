@@ -2,7 +2,7 @@ module.exports = {
   verbose: true,
   collectCoverage: true,
   coverageDirectory: './coverage/js',
-  setupFiles: ["dotenv/config"],
+  setupFiles: ['<rootDir>/.env.test'],
   globalSetup: "<rootDir>/dotenv-test.js",
   collectCoverageFrom: [
     '**/*.js',
