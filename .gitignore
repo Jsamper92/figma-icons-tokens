@@ -6,5 +6,5 @@ assets/
 .npmrc 
 .idea
 .env
-
+.env.test
 tokens.json
