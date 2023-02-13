@@ -1,3 +1,7 @@
+# 1.2.2 / 2022-02-13
+
+- Added flag config to return message by promise resolve when consume Api Javascript
+
 # 1.2.1 / 2022-02-04
 
 - Added the data property in the javascript API response that returns the content of the svg.
