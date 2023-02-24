@@ -177,17 +177,12 @@ describe('Library figma-icons-tokens', () => {
 
                 expect(getIcons).toBeDefined();
             });
+
             it('should return an error if there are no new icons to import', async () => {
                 const result = await getIcons('', [], false);
 
                 expect(result).toEqual();
             });
         });
-
-        it('should execute getIcons', async () => {
-            /* const data = await getIcons('assets', _tokens.global.icon); */
-
-            expect(getIcons).toBeDefined()
-        }, 10500)
     })
 })
