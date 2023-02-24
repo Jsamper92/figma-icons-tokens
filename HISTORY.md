@@ -1,3 +1,7 @@
+# 1.2.3 / 2022-02-24
+
+- Fixed token bug with three nesting.
+
 # 1.2.2 / 2022-02-13
 
 - Added flag config to return message by promise resolve when consume Api Javascript
