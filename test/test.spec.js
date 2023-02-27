@@ -1,8 +1,9 @@
 const { figmaIconsTokens } = require("../lib");
 const { requestHttp, getNode, getIconContent, getSvgImageUrl } = require("../lib/utils/api");
-const { error, getValueToken, getNodeIcons, handleChildIcons, config, getIcons } = require("../lib/utils/utils");
+const { error, getValueToken, getNodeIcons, handleChildIcons, config, getIcons, getData } = require("../lib/utils/utils");
 const { tokens } = require("./__mocks__/tokens");
 const fs = require('fs');
+const icons = require("./__mocks__/icons");
 
 describe('Library figma-icons-tokens', () => {
 
@@ -25,7 +26,7 @@ describe('Library figma-icons-tokens', () => {
 
             expect(process.env.FIGMA_TOKEN).toBeDefined();
         })
-        
+
     })
 
     describe('Script figmaIconsTokens', () => {
@@ -124,6 +125,16 @@ describe('Library figma-icons-tokens', () => {
             })
         })
 
+        describe('getData', () => {
+            it('should be defined', () => {
+                expect(getData).toBeDefined()
+            })
+
+            it('should be executed', () => {
+                expect(getData(icons, 'test', 'icons', 'file')).toEqual(icons);
+            })
+        })
+
         describe('getValueToken', () => {
             const promises = [];
             const file = {
@@ -137,7 +148,7 @@ describe('Library figma-icons-tokens', () => {
 
             it('should execute getValueToken', () => {
                 getValueToken('assets', file, 'test', promises)
-                expect(promises).toEqual([/* { "fileId": "HUEONS1CdZa3fC5IEfLKzq", "name": "test", "nodeId": "1408%3A5556&t" } */])
+                expect(promises).toEqual([])
             })
 
         })

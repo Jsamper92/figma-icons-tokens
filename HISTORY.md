@@ -1,3 +1,7 @@
+# 1.3.0 / 2022-02-27
+
+- Added a "data" configuration parameter where an object with icons can be passed to it.
+
 # 1.2.3 / 2022-02-24
 
 - Fixed token bug with three nesting.
