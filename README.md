@@ -2,7 +2,6 @@
 
 Figma-icons-tokens aims to import figma icons given a design tokens configuration file exposed by [Tokens Studio Figma](https://tokens.studio/).
 
-
 ## Installation
 
 ```
@@ -11,7 +10,7 @@ npm install figma-icons-tokens
 
 ## Example
 
-``` 
+```
 figma-icons-tokens --file=tokens.json --theme=global --key=icon --path=assets
 ```
 
@@ -88,6 +87,7 @@ const figma = require('figma-icons-tokens');
 ```
 
 ### figmaIconsTokens ({theme: string, path: string, file: string, key: string, data: Object}) : Promise<{path: string; name: string; data: Object}[]>
+
 ```
 const [figma, argv] = [
   require('figma-icons-tokens')
@@ -97,23 +97,29 @@ const [figma, argv] = [
 const { tokens, theme, path } = argv;
 const { figmaIconsTokens } = figma;
 
-figmaIconsTokens({ theme, path, file: tokens, key: 'icons', data: {"ICON_X": {
-                                                                    "value": "https://www.figma.com/file/XX",
-                                                                    "type": "asset"
-                                                                    }
-                                                                } 
-                })
+figmaIconsTokens({
+        theme,
+        path,
+        file: tokens,
+        key: 'icons',
+        data: {
+                "ICON_X": {
+                    "value": "https://www.figma.com/file/XX",
+                    "type": "asset"
+                }
+            }
+    })
   .then((ev) => console.log(ev))
   .catch((error) => console.error(error))
 ```
 
-| Args | Type | Description                                            |
-| ----- | ----  | ---------------------------------------------------- |
-| file  | String | File Configuration                                  |
-| theme | String | Theme name where the icons to import are specified. |
-| key   | String | Key where the icons to import are located.          |
-| path  | String | Path where the imported icons should be exposed.    |
-| data  | Object <br/>(Optional) | Object with icons to import files svg |
+| Args  | Type                   | Description                                         |
+| ----- | ---------------------- | --------------------------------------------------- |
+| file  | String                 | File Configuration                                  |
+| theme | String                 | Theme name where the icons to import are specified. |
+| key   | String                 | Key where the icons to import are located.          |
+| path  | String                 | Path where the imported icons should be exposed.    |
+| data  | Object <br/>(Optional) | Object with icons to import files svg               |
 
 ## Changelog
 
@@ -130,8 +136,6 @@ If you are contributing code with new features or bug-fixes:
 - Follow the development guide below to get figma-icons-tokens to work.
 - Open a pull request on [Github](https://github.com/Jsamper92/figma-icons-tokens/issues)
 
-
 ## License
 
 [MIT License](LICENSE) © [Javier Samper Arias](https://github.com/Jsamper92)
-
