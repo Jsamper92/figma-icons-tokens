@@ -113,7 +113,7 @@ figmaIconsTokens({ theme, path, file: tokens, key: 'icons', data: {"ICON_X": {
 | theme | String | Theme name where the icons to import are specified. |
 | key   | String | Key where the icons to import are located.          |
 | path  | String | Path where the imported icons should be exposed.    |
-| data  | Object <br/>(Optional) | Object with icons to import files svg               |
+| data  | Object <br/>(Optional) | Object with icons to import files svg |
 
 ## Changelog
 
