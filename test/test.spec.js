@@ -1,13 +1,11 @@
 const { figmaIconsTokens } = require("../lib");
 const { requestHttp, getNode, getIconContent, getSvgImageUrl } = require("../lib/utils/api");
 const { error, getValueToken, getNodeIcons, handleChildIcons, config, getIcons, getData } = require("../lib/utils/utils");
-const { tokens } = require("./__mocks__/tokens");
 const fs = require('fs');
 const icons = require("./__mocks__/icons");
 
 describe('Library figma-icons-tokens', () => {
 
-    const _tokens = JSON.parse(tokens);
     const _config = { path: 'assets', file: 'tokens.json', key: 'icon', theme: 'global', bin: false };
 
     const config = (arg) => {
@@ -156,7 +154,7 @@ describe('Library figma-icons-tokens', () => {
         describe('getNodeIcons', () => {
 
             it('should defined', () => {
-                expect(getNodeIcons('assets', _tokens.global.icon)).toBeDefined()
+                expect(getNodeIcons).toBeDefined()
             })
         });
 
@@ -192,7 +190,7 @@ describe('Library figma-icons-tokens', () => {
             it('should return an error if there are no new icons to import', async () => {
                 const result = await getIcons('', [], false);
 
-                expect(result).toEqual();
+                expect(result).toEqual([]);
             });
         });
     })

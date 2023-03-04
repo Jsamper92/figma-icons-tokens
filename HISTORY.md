@@ -1,3 +1,7 @@
+# 1.3.1 / 2022-02-27
+
+- Fix resolve in promise figmaIconsTokens.
+
 # 1.3.0 / 2022-02-27
 
 - Added a "data" configuration parameter where an object with icons can be passed to it.
