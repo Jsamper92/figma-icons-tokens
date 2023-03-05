@@ -1,4 +1,8 @@
-# 1.3.1 / 2022-02-27
+# 1.3.2 / 2022-03-06
+
+- Add response resolve in promise figmaIconsTokens when configuration failed or scipts flags.
+
+# 1.3.1 / 2022-03-05
 
 - Fix resolve in promise figmaIconsTokens.
 
