@@ -1,7 +1,10 @@
+# 1.4.2 / 2022-03-13
+
+- Add feature so that failing one icon import does not block all other icon downloads.
+
 # 1.4.1 / 2022-03-12
 
 - Add feature to handle error when parameter node-id in url icon figma isn`t written in URI code.
-- Add feature so that failing one icon import does not block all other icon downloads.
 
 # 1.4.0 / 2022-03-06
 
