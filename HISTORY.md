@@ -1,4 +1,9 @@
-# 1.3.2 / 2022-03-06
+# 1.4.1 / 2022-03-12
+
+- Add feature to handle error when parameter node-id in url icon figma isn`t written in URI code.
+- Add feature so that failing one icon import does not block all other icon downloads.
+
+# 1.4.0 / 2022-03-06
 
 - Add response resolve in promise figmaIconsTokens when configuration failed or scipts flags.
 
