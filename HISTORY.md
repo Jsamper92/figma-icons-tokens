@@ -1,3 +1,11 @@
+# 1.4.4 / 2022-04-19
+
+- Delete package minimist.
+
+# 1.4.3 / 2022-04-19
+
+- Add feature to handle large number of icon imports via icon chunks.
+  
 # 1.4.2 / 2022-03-13
 
 - Add feature so that failing one icon import does not block all other icon downloads.
