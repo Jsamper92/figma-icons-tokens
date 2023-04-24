@@ -1,3 +1,7 @@
+# 1.4.5 / 2022-04-24
+
+- Improves asynchronous process of creating svg files..
+
 # 1.4.4 / 2022-04-19
 
 - Delete package minimist.
