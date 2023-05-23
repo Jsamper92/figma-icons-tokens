@@ -1,3 +1,7 @@
+# 1.4.8 / 2022-05-23
+
+- Check if url token is valid.
+
 # 1.4.5 / 2022-04-24
 
 - Improves asynchronous process of creating svg files.

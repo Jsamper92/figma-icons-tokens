@@ -1,13 +1,13 @@
 {
   "name": "figma-icons-tokens",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "Figma-icons-tokens aims to import figma icons given a design tokens configuration file exposed by Tokens Studio Figma.",
   "main": "./lib/index.js",
   "bin": {
     "figma-icons-tokens": "./bin/index.js"
   },
   "scripts": {
-    "build": "node bin/index.js --file=tokens.json --theme=global --key=icon --path=assets",
+    "build": "node bin/index.js --file=tokens.json --theme=_icons --key=ds --path=assets",
     "test": "jest --setupFiles dotenv/config"
   },
   "keywords": [
