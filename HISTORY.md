@@ -1,3 +1,7 @@
+# 1.5.0 / 2022-05-27
+
+- Replace separator name icon "_" to "-".
+
 # 1.4.8 / 2022-05-23
 
 - Check if url token is valid.
