@@ -1,13 +1,13 @@
 {
   "name": "figma-icons-tokens",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Figma-icons-tokens aims to import figma icons given a design tokens configuration file exposed by Tokens Studio Figma.",
   "main": "./lib/index.js",
   "bin": {
     "figma-icons-tokens": "./bin/index.js"
   },
   "scripts": {
-    "build": "node bin/index.js --file=tokens.json --theme=_icons --key=ds --path=assets",
+    "build": "node bin/index.js --file=tokens.json --theme=ds --key=icon --path=assets",
     "test": "jest --setupFiles dotenv/config"
   },
   "keywords": [
@@ -28,9 +28,9 @@
     "REAMDE.md"
   ],
   "dependencies": {
+    "axios": "^1.7.7",
     "colors": "1.4.0",
-    "dotenv": "16.0.3",
-    "node-fetch": "^2.6.9"
+    "dotenv": "16.0.3"
   },
   "directories": {
     "doc": "docs"
